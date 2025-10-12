@@ -1,0 +1,216 @@
+/* -------------------------------------- */
+/* 1. VARIÁVEIS, RESET E CORES TEMA DA ESCOLA (Mobile-First) */
+/* -------------------------------------- */
+:root {
+    /* Paleta de Cores da Escola: Vermelho, Azul e Branco */
+    --azul-primario: #0D47A1;    /* Azul Escuro Profundo */
+    --vermelho-destaque: #C62828; /* Vermelho Escuro Intenso */
+    --branco-fundo: #FAFAFA;     /* Quase Branco para o Corpo */
+    --branco-card: #FFFFFF;      /* Branco Puro para os Cards */
+    --cor-texto: #212121;        /* Preto Quase Puro */
+    
+    /* Configurações de Design */
+    --sombra-card: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra mais rica */
+    --transicao-suave: 0.35s ease-in-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', 'Arial', sans-serif; /* Fonte mais moderna */
+    line-height: 1.6;
+    background-color: var(--branco-fundo);
+    color: var(--cor-texto);
+    scroll-behavior: smooth;
+}
+
+/* -------------------------------------- */
+/* 2. CABEÇALHO E NAVEGAÇÃO (FLEXBOX RESPONSIVO) */
+/* -------------------------------------- */
+.site-header {
+    background-color: var(--azul-primario);
+    color: var(--branco-card);
+    padding: 20px 5%; /* Adiciona padding lateral */
+    text-align: center;
+    
+    /* FLEXBOX: Organização em colunas no Mobile */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.site-header h1 {
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+
+/* LOGO - Mantendo a referência do usuário */
+.logo img {
+    width: 80px; /* Redução para mobile */
+    height: auto;
+    margin: 10px auto;
+    padding-right: 30px;
+}
+
+/* NAVEGAÇÃO - MOBILE (Empilhado) */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column; /* Empilha os links no mobile */
+    gap: 8px; /* Espaço entre os links */
+    padding-top: 10px;
+    width: 100%;
+}
+
+.main-nav li {
+    margin: 0; /* Remove margem lateral do li no mobile */
+}
+
+.main-nav a {
+    color: var(--branco-card);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color var(--transicao-suave), transform var(--transicao-suave);
+    display: block; /* Ocupa a largura total para melhor clique */
+}
+
+/* Efeito Hover e Foco (Acessibilidade + Complexidade) */
+.main-nav a:hover,
+.main-nav a:focus {
+    background-color: var(--vermelho-destaque); /* Vermelho no hover */
+    transform: scale(1.02);
+    /* Foco claro, essencial para acessibilidade de navegação por teclado */
+    outline: 3px solid var(--branco-card); 
+    outline-offset: 2px;
+}
+
+
+/* -------------------------------------- */
+/* 3. SEÇÕES DE CONTEÚDO (GRID E CARDS COM HOVER) */
+/* -------------------------------------- */
+
+/* Container Principal para Layout de Página Inteira */
+.sport-section {
+    min-height: 90vh; 
+    padding: 60px 5%;
+    /* GRID para centralizar o conteúdo (card) */
+    display: grid; 
+    place-items: center; 
+    text-align: center;
+}
+
+/* Estilos dos Cards (article) */
+.sport-section article {
+    max-width: 900px;
+    width: 100%;
+    background-color: var(--branco-card);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--sombra-card);
+    text-align: left; /* Conteúdo interno alinhado à esquerda */
+    
+    /* COMPLEXIDADE: Transição para o efeito hover */
+    transition: box-shadow var(--transicao-suave), transform var(--transicao-suave), border var(--transicao-suave);
+    border-top: 5px solid transparent; /* Base para o hover */
+}
+
+/* Efeito de Elevação no Hover do Card */
+.sport-section article:hover {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25); /* Sombra mais proeminente */
+    transform: translateY(-8px); /* Elevação perceptível */
+    border-top: 5px solid var(--vermelho-destaque); /* Detalhe com a cor de destaque */
+}
+
+/* Títulos H2 */
+.sport-section h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: var(--azul-primario); /* Título principal em azul */
+    border-bottom: 2px dashed #DDD;
+    padding-bottom: 10px;
+}
+
+/* Estilos Específicos das Seções */
+#futebol { background-color: #E3F2FD; } /* Tom de azul bem claro */
+#basquete { background-color: #FFFDE7; } /* Tom de amarelo/branco */
+#handebol { background-color: #FBEFEF; } /* Tom de vermelho/branco */
+#volei { background-color: #E3F2FD; }   /* Repete o tom para contraste */
+
+/* Ajustando Cores de Títulos para melhor leitura visual */
+#futebol h2 { color: var(--vermelho-destaque); }
+#basquete h2 { color: var(--azul-primario); }
+#handebol h2 { color: var(--azul-primario); }
+#volei h2 { color: var(--vermelho-destaque); }
+
+/* -------------------------------------- */
+/* 4. RODAPÉ */
+/* -------------------------------------- */
+.site-footer {
+    background-color: var(--azul-primario);
+    color: var(--branco-card);
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+}
+
+/* -------------------------------------- */
+/* 5. MEDIA QUERIES (Ajustes para Desktop/Tablet) */
+/* -------------------------------------- */
+
+@media (min-width: 768px) {
+    
+    /* CABEÇALHO - Desktop (Horizontal) */
+    .site-header {
+        flex-direction: row; /* Volta a ser horizontal */
+        justify-content: space-between; 
+    }
+    
+    /* Oculta a descrição do site em telas pequenas e mostra em telas maiores */
+    .site-header p {
+        display: inline; 
+        margin-left: 15px;
+        font-size: 0.9em;
+        opacity: 0.8;
+    }
+
+    /* LOGO - Desktop */
+    .logo img {
+        width: 100px; 
+        margin: 0;
+    }
+    
+    /* NAVEGAÇÃO - Desktop (Horizontal) */
+    .main-nav {
+        margin-left: auto; /* Empurra o menu para a direita */
+    }
+    
+    .main-nav ul {
+        flex-direction: row; /* Links alinhados em linha */
+        justify-content: flex-end; /* Alinha os links à direita */
+        padding-top: 0;
+    }
+    
+    /* SEÇÕES */
+    .sport-section {
+        padding: 80px 10%;
+    }
+    
+    .sport-section article {
+        padding: 50px;
+    }
+    
+    .sport-section h2 {
+        font-size: 2.5em;
+    }
+}
