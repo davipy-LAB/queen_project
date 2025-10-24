@@ -5,13 +5,16 @@
     /* Paleta de Cores da Escola: Vermelho, Azul e Branco */
     --azul-primario: #0D47A1;    /* Azul Escuro Profundo */
     --vermelho-destaque: #C62828; /* Vermelho Escuro Intenso */
-    --branco-fundo: #FAFAFA;     /* Quase Branco para o Corpo */
-    --branco-card: #FFFFFF;      /* Branco Puro para os Cards */
-    --cor-texto: #212121;        /* Preto Quase Puro */
+    --branco-fundo: #FAFAFA;     
+    --branco-card: #FFFFFF;      
+    --cor-texto: #212121;        
     
     /* Configurações de Design */
-    --sombra-card: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra mais rica */
+    --sombra-card: 0 6px 15px rgba(0, 0, 0, 0.15); 
     --transicao-suave: 0.35s ease-in-out;
+    
+    /* NOVO: Altura do cabeçalho fixo no Mobile (Ajustada para o novo layout sem nav) */
+    --altura-header: 140px; 
 }
 
 * {
@@ -21,137 +24,114 @@
 }
 
 body {
-    font-family: 'Roboto', 'Arial', sans-serif; /* Fonte mais moderna */
+    font-family: 'Roboto', 'Arial', sans-serif; 
     line-height: 1.6;
     background-color: var(--branco-fundo);
     color: var(--cor-texto);
     scroll-behavior: smooth;
+    
+    /* ESSENCIAL: Espaço para evitar que o conteúdo fique atrás do header fixo */
+    padding-top: var(--altura-header); 
 }
 
 /* -------------------------------------- */
-/* 2. CABEÇALHO E NAVEGAÇÃO (FLEXBOX RESPONSIVO) */
+/* 2. CABEÇALHO (FIXO E COMPACTO) */
 /* -------------------------------------- */
 .site-header {
     background-color: var(--azul-primario);
     color: var(--branco-card);
-    padding: 20px 5%; /* Adiciona padding lateral */
+    padding: 15px 5%; /* Padding reduzido para um header mais compacto */
     text-align: center;
     
-    /* FLEXBOX: Organização em colunas no Mobile */
+    /* PROPRIEDADES DE FIXAÇÃO */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    
+    /* FLEXBOX: Logo, Título e Slogan no Mobile (Vertical Compacto) */
     display: flex; 
     flex-direction: column; 
     align-items: center;
-
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .site-header h1 {
-    font-size: 1.8em;
-    margin-bottom: 5px;
+    font-size: 1.6em; /* Tamanho levemente reduzido */
+    margin-bottom: 3px;
 }
 
-/* LOGO - Mantendo a referência do usuário */
+.site-header p {
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+/* LOGO */
 .logo img {
-    width: 80px; /* Redução para mobile */
+    width: 70px; /* Reduzido para mobile */
     height: auto;
-    margin: 10px auto;
-    padding-right: 30px;
+    margin-bottom: 5px;
+    /* Remover padding-right obsoleto */
+    padding-right: 0; 
 }
 
-/* NAVEGAÇÃO - MOBILE (Empilhado) */
-.main-nav ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column; /* Empilha os links no mobile */
-    gap: 8px; /* Espaço entre os links */
-    padding-top: 10px;
-    width: 100%;
-}
-
-.main-nav li {
-    margin: 0; /* Remove margem lateral do li no mobile */
-}
-
-.main-nav a {
-    color: var(--branco-card);
-    text-decoration: none;
-    font-weight: 700;
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: background-color var(--transicao-suave), transform var(--transicao-suave);
-    display: block; /* Ocupa a largura total para melhor clique */
-}
-
-/* Efeito Hover e Foco (Acessibilidade + Complexidade) */
-.main-nav a:hover,
-.main-nav a:focus {
-    background-color: var(--vermelho-destaque); /* Vermelho no hover */
-    transform: scale(1.02);
-    /* Foco claro, essencial para acessibilidade de navegação por teclado */
-    outline: 3px solid var(--branco-card); 
-    outline-offset: 2px;
-}
+/* NAVEGAÇÃO ANTERIOR FOI REMOVIDA */
 
 
 /* -------------------------------------- */
-/* 3. SEÇÕES DE CONTEÚDO (GRID E CARDS COM HOVER) */
+/* 3. SEÇÕES DE CONTEÚDO (CARREIRAS) */
 /* -------------------------------------- */
 
-/* Container Principal para Layout de Página Inteira */
-.sport-section {
+/* NOVA CLASSE */
+.career-section { 
     min-height: 90vh; 
     padding: 60px 5%;
-    /* GRID para centralizar o conteúdo (card) */
     display: grid; 
     place-items: center; 
     text-align: center;
 }
 
 /* Estilos dos Cards (article) */
-.sport-section article {
+.career-section article {
     max-width: 900px;
     width: 100%;
     background-color: var(--branco-card);
     padding: 40px;
     border-radius: 12px;
     box-shadow: var(--sombra-card);
-    text-align: left; /* Conteúdo interno alinhado à esquerda */
-    
-    /* COMPLEXIDADE: Transição para o efeito hover */
-    transition: box-shadow var(--transicao-suave), transform var(--transicao-suave), border var(--transicao-suave);
-    border-top: 5px solid transparent; /* Base para o hover */
+    text-align: left;
+    transition: box-shadow var(--transicao-suave), transform var(--transicao-suave), border-top var(--transicao-suave);
+    border-top: 5px solid transparent; 
 }
 
 /* Efeito de Elevação no Hover do Card */
-.sport-section article:hover {
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25); /* Sombra mais proeminente */
-    transform: translateY(-8px); /* Elevação perceptível */
-    border-top: 5px solid var(--vermelho-destaque); /* Detalhe com a cor de destaque */
+.career-section article:hover {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+    transform: translateY(-8px);
+    border-top: 5px solid var(--vermelho-destaque);
 }
 
 /* Títulos H2 */
-.sport-section h2 {
+.career-section h2 {
     font-size: 2em;
     margin-bottom: 15px;
-    color: var(--azul-primario); /* Título principal em azul */
+    color: var(--azul-primario);
     border-bottom: 2px dashed #DDD;
     padding-bottom: 10px;
 }
 
-/* Estilos Específicos das Seções */
-#futebol { background-color: #E3F2FD; } /* Tom de azul bem claro */
-#basquete { background-color: #FFFDE7; } /* Tom de amarelo/branco */
-#handebol { background-color: #FBEFEF; } /* Tom de vermelho/branco */
-#volei { background-color: #E3F2FD; }   /* Repete o tom para contraste */
+/* Estilos Específicos das Seções (Cores de Fundo Mantidas/Ajustadas) */
+#fisioterapia { background-color: #E3F2FD; } 
+#jornalismo { background-color: #FFFDE7; } 
+#psicologia { background-color: #FBEFEF; } 
+#educacao-fisica { background-color: #E3F2FD; } 
 
-/* Ajustando Cores de Títulos para melhor leitura visual */
-#futebol h2 { color: var(--vermelho-destaque); }
-#basquete h2 { color: var(--azul-primario); }
-#handebol h2 { color: var(--azul-primario); }
-#volei h2 { color: var(--vermelho-destaque); }
+/* Cores de Títulos */
+#fisioterapia h2 { color: var(--vermelho-destaque); }
+#jornalismo h2 { color: var(--azul-primario); }
+#psicologia h2 { color: var(--azul-primario); }
+#educacao-fisica h2 { color: var(--vermelho-destaque); }
 
 /* -------------------------------------- */
 /* 4. RODAPÉ */
@@ -170,47 +150,52 @@ body {
 
 @media (min-width: 768px) {
     
-    /* CABEÇALHO - Desktop (Horizontal) */
-    .site-header {
-        flex-direction: row; /* Volta a ser horizontal */
-        justify-content: space-between; 
+    /* ATUALIZAÇÃO RESPONSIVA: Altura muito menor para o header fixo no desktop */
+    :root {
+        --altura-header: 80px; /* Header fica horizontal e ocupa menos espaço */
     }
-    
-    /* Oculta a descrição do site em telas pequenas e mostra em telas maiores */
-    .site-header p {
-        display: inline; 
-        margin-left: 15px;
-        font-size: 0.9em;
-        opacity: 0.8;
+
+    /* CABEÇALHO - Desktop (Horizontal e Compacto) */
+    .site-header {
+        flex-direction: row; /* Horizontal */
+        justify-content: flex-start; /* Alinha tudo à esquerda */
+        gap: 20px; /* Espaço entre logo/título e slogan */
+        padding: 15px 5%;
     }
 
     /* LOGO - Desktop */
+    .logo {
+        /* Para alinhar o conteúdo verticalmente com o Flex */
+        display: flex;
+        align-items: center;
+    }
+    
     .logo img {
-        width: 100px; 
-        margin: 0;
+        width: 60px; /* Reduzido para ficar mais profissional e discreto no desktop */
+        margin-right: 15px;
     }
     
-    /* NAVEGAÇÃO - Desktop (Horizontal) */
-    .main-nav {
-        margin-left: auto; /* Empurra o menu para a direita */
+    /* Título e Slogan */
+    .site-header h1 {
+        font-size: 2em; 
+        margin-bottom: 0;
     }
     
-    .main-nav ul {
-        flex-direction: row; /* Links alinhados em linha */
-        justify-content: flex-end; /* Alinha os links à direita */
-        padding-top: 0;
+    .site-header p {
+        display: inline; 
+        margin-left: auto; /* Empurra o slogan para a direita */
     }
     
     /* SEÇÕES */
-    .sport-section {
+    .career-section {
         padding: 80px 10%;
     }
     
-    .sport-section article {
+    .career-section article {
         padding: 50px;
     }
     
-    .sport-section h2 {
+    .career-section h2 {
         font-size: 2.5em;
     }
 }
