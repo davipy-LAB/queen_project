@@ -51,11 +51,18 @@ body {
     width: 100%; 
     z-index: 1000;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: top 0.3s ease-in-out, box-shadow var(--transicao-suave); /* top 0.3s adicionado */
     
     /* FLEXBOX: Logo, Título e Slogan no Mobile (Vertical Compacto) */
     display: flex; 
     flex-direction: column; 
     align-items: center;
+}
+
+.header-hidden {
+    /* O cálculo move o cabeçalho para o topo da tela por uma distância igual à sua altura (140px no mobile), fazendo-o sumir */
+    top: calc(0px - var(--altura-header)); 
+    box-shadow: none; /* Opcional: Remove a sombra quando está escondido */
 }
 
 .site-header h1 {
