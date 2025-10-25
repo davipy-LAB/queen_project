@@ -9,7 +9,7 @@ Este projeto é um site de portfólio e informativo, desenvolvido com o objetivo
 
 O site foi construído seguindo uma filosofia **Mobile-First** (priorizando a experiência em dispositivos móveis) e utiliza design responsivo para garantir uma visualização otimizada em qualquer tamanho de tela.
 
-## ✨ Funcionalidades e Design
+## ✨ Funcionalidades e Design Moderno
 
 * **Tema Centralizado:** Foco exclusivo em carreiras que envolvem o esporte (não nos esportes em si).
 * **Design Minimalista e Profissional:** O layout é limpo, com um cabeçalho fixo contendo apenas o logo da escola e o slogan, otimizando o espaço da tela.
